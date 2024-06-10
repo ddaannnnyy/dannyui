@@ -1,0 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,300,0,0");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --primary: #2176ff;
+    --secondary: #258ea6;
+    --accent: #9b5de5;
+    --neutral: #fffffa;
+    --base: #0d0c1d;
+    --info: #4392f1;
+    --success: #0b5351;
+    --warning: #ffbc0a;
+    --error: #f45b69;
+  }
+}
+@layer components {
+}
+@layer utilities {
+}
