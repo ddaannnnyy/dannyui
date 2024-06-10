@@ -6,7 +6,7 @@
   >
     {{ label }}
     <div
-      class="p-150 gap-150 has-[:focus-visible]:border-base has-[:disabled]:text-base/40 flex w-full flex-row rounded border"
+      class="p-150 gap-150 has-[:focus-visible]:border-base has-[:disabled]:text-base/40 bg-neutral flex w-full flex-row rounded border"
     >
       <span v-if="type === 'date'" class="material-symbols-rounded">
         calendar_today
@@ -28,7 +28,7 @@
         :name="name"
         :disabled="disabled"
         :placeholder="placeholder"
-        class="w-full flex-grow"
+        class="w-full flex-grow bg-transparent"
       />
     </div>
   </label>

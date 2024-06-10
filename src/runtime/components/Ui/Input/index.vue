@@ -6,7 +6,7 @@
   >
     {{ label }}
     <div
-      class="p-150 gap-150 has-[:focus-visible]:border-base has-[:disabled]:text-base/40 *:invalid:text-error *:invalid:border-error flex w-full flex-row rounded border"
+      class="p-150 gap-150 has-[:disabled]:text-base/40 has-[:disabled]:border-base/40 has-[:disabled]:bg-base/5 bg-neutral border-base ring-base/30 flex w-full flex-row rounded border has-[:focus-visible]:ring-2"
     >
       <span
         v-if="type === 'text'"
@@ -59,9 +59,10 @@
         :placeholder="placeholder"
         :required="required"
         ref="input"
-        class="w-full flex-grow"
+        class="w-full flex-grow bg-transparent"
       />
     </div>
+    <p v-if="!!helper" class="text-base/50">{{ helper }}</p>
   </label>
 </template>
 
@@ -74,6 +75,7 @@ const {
   placeholder,
   disabled = false,
   required = false,
+  helper,
 } = defineProps<{
   name: string;
   label: string;
@@ -81,6 +83,7 @@ const {
   placeholder?: string;
   disabled?: boolean;
   required?: boolean;
+  helper?: string;
 }>();
 </script>
 

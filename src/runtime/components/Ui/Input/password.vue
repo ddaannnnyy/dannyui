@@ -5,7 +5,7 @@
   >
     {{ label }}
     <div
-      class="p-150 gap-150 has-[:focus-visible]:border-base has-[:disabled]:text-base/40 flex w-full flex-row items-center rounded border pr-[7.5px]"
+      class="p-150 gap-150 has-[:focus-visible]:border-base has-[:disabled]:text-base/40 bg-neutral flex w-full flex-row items-center rounded border pr-[7.5px]"
     >
       <span class="material-symbols-rounded"> password </span>
       <input
@@ -13,7 +13,7 @@
         :name="name"
         :disabled="disabled"
         :placeholder="placeholder"
-        class="w-full flex-grow"
+        class="w-full flex-grow bg-transparent"
       />
       <button
         class="flex h-full items-center justify-center"

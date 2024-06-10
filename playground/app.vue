@@ -1,32 +1,24 @@
 <template>
-  <div class="gap-300 w-5000 p-350 flex flex-col">
-    <form class="gap-300 w-5000 p-350 flex flex-col">
-      <div class="gap-300 grid w-full grid-cols-2">
-        <UiInput
-          name="required"
-          label="required"
-          placeholder="placeholder"
-          type="number"
-          required
-        ></UiInput>
-        <UiInputDate
-          name="name"
-          label="Label"
-          placeholder="placeholder"
-          type="time"
-        ></UiInputDate>
-      </div>
-      <UiInputColor name="name" label="color"> </UiInputColor>
+  <div
+    class="gap-300 p-350 bg-primary flex h-screen w-screen flex-col items-center justify-center"
+  >
+    <UiForm
+      title="Sign In"
+      class="w-4000"
+      :showSubmit="true"
+      @submit="console.log('submitted')"
+    >
       <UiInput
         name="name"
-        label="Label"
-        placeholder="placeholder"
+        label="Username"
+        placeholder="hello@email.com"
         type="email"
+        helper="You can use your username if you registered before June 2020"
         required
-      ></UiInput>
-      <UiInputPassword name="password" label="password"> </UiInputPassword>
-      <button>test</button>
-    </form>
+      />
+      <UiInputPassword name="password" label="Password" required />
+      <UiInputColor name="color" label="What is your favourite colour?" />
+    </UiForm>
     <div class="bg-neutral gap-100 p-300 flex flex-row">
       <div class="w-1000 bg-primary aspect-square"></div>
       <div class="w-1000 bg-secondary aspect-square"></div>

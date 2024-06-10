@@ -5,7 +5,7 @@
   >
     {{ label }}
     <div
-      class="p-150 gap-150 has-[:focus-visible]:border-base has-[:disabled]:text-base/40 flex w-full flex-row rounded border"
+      class="p-150 gap-150 has-[:focus-visible]:border-base has-[:disabled]:text-base/40 bg-neutral flex w-full flex-row rounded border"
     >
       <span class="material-symbols-rounded"> palette </span>
       <input
@@ -14,7 +14,13 @@
         :disabled="disabled"
         class="w-full flex-grow"
         @input="handleColorChange"
+        list="presetColors"
       />
+      <datalist id="presetColors">
+        <option>#ff0000</option>
+        <option>#00ff00</option>
+        <option>#0000ff</option>
+      </datalist>
     </div>
   </label>
 </template>
