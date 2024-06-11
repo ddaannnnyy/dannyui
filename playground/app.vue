@@ -26,6 +26,13 @@
       ></UiInput>
       <UiInputPassword name="password" label="password"> </UiInputPassword>
       <button>test</button>
+      <UiInputTextarea
+        name="text"
+        label="Text Area"
+        placeholder="placeholder..."
+        disabled
+        @input="console.log($event)"
+      />
     </form>
     <div class="bg-neutral gap-100 p-300 flex flex-row">
       <div class="w-1000 bg-primary aspect-square"></div>

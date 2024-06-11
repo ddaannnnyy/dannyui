@@ -20,7 +20,10 @@ Find and replace all on all files (CMD+SHIFT+F):
   - ~~Basic Types~~
   - ~~Color Picker~~
   - ~~Date, Time, Week~~
-  - Textarea
+  - ~~Textarea~~
+  - Password
+    - ~~Input~~
+    - Password Requirements
   - Range
   - Phone
   - OTP
