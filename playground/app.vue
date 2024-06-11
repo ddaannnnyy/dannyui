@@ -34,6 +34,7 @@
         @input="console.log($event)"
       />
     </form>
+    <UiInputPasswordRequirements></UiInputPasswordRequirements>
     <div class="bg-neutral gap-100 p-300 flex flex-row">
       <div class="w-1000 bg-primary aspect-square"></div>
       <div class="w-1000 bg-secondary aspect-square"></div>
