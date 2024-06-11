@@ -14,64 +14,62 @@ Find and replace all on all files (CMD+SHIFT+F):
 [![License][license-src]][license-href]
 [![Nuxt][nuxt-src]][nuxt-href]
 
-<details>
-  <summary>Todo</summary>
-  - Inputs
-    - ~~Basic Types~~
-    - ~~Color Picker~~
-    - ~~Date, Time, Week~~
-    - Textarea
-    - Range
-    - Phone
-    - OTP
-    - Switches, Radio, Checkbox
-    - Select
-    - Rating
-  - Buttons
-    - ~~Simple~~
-    - Grouped
-    - Floating Action
-  - Accordion
-  - Multi Stepper
-  - Treeview
-  - Charts
-  - Header
-  - Footer
-  - Hero
-  - Widgets
-    - Gauges
-    - Tickers
-    - Key Value Dashboard Items
-  - Cards
-  - Breadcrumbs
-  - Typography
-  - Divider
-  - List
-  - Toasts
-  - Calendar
-  - Tables
-  - Tabs
-  - Images
-  - Progress Bar
-  - Skeleton
-  - Pagination
-  - Alerts
-    - Floating
-    - Inline
-  - Badges
-    - Chips
-    - Tooltips
-  - Modals
-    - Loading State
-    - Dialog
-  - Navigation
-    - Top Bar Navigation
-    - Side Bar Navigation
-    - Drawer
-  - Avatars
-    - Avatar Groups
-  
-</details>
+## TODO
+
+- Inputs
+  - ~~Basic Types~~
+  - ~~Color Picker~~
+  - ~~Date, Time, Week~~
+  - Textarea
+  - Range
+  - Phone
+  - OTP
+  - Switches, Radio, Checkbox
+  - Select
+  - Rating
+- Buttons
+  - ~~Simple~~
+  - Grouped
+  - Floating Action
+- Accordion
+- Multi Stepper
+- Treeview
+- Charts
+- Header
+- Footer
+- Hero
+- Widgets
+  - Gauges
+  - Tickers
+  - Key Value Dashboard Items
+- Cards
+- Breadcrumbs
+- Typography
+- Divider
+- List
+- Toasts
+- Calendar
+- Tables
+- Tabs
+- Images
+- Progress Bar
+- Skeleton
+- Pagination
+- Alerts
+  - Floating
+  - Inline
+- Badges
+  - Chips
+  - Tooltips
+- Modals
+  - Loading State
+  - Dialog
+- Navigation
+  - Top Bar Navigation
+  - Side Bar Navigation
+  - Drawer
+- Avatars
+- Avatar Groups
 
 - [✨ &nbsp;Release Notes](/CHANGELOG.md)
   <!-- - [🏀 Online playground](https://stackblitz.com/github/your-org/my-module?file=playground%2Fapp.vue) -->
