@@ -15,10 +15,18 @@
         type="email"
         helper="You can use your username if you registered before June 2020"
         required
+      ></UiInput>
+      <UiInputPassword name="password" label="password"> </UiInputPassword>
+      <button>test</button>
+      <UiInputTextarea
+        name="text"
+        label="Text Area"
+        placeholder="placeholder..."
+        disabled
+        @input="console.log($event)"
       />
-      <UiInputPassword name="password" label="Password" required />
-      <UiInputColor name="color" label="What is your favourite colour?" />
-    </UiForm>
+    </form>
+    <UiInputPasswordRequirements></UiInputPasswordRequirements>
     <div class="bg-neutral gap-100 p-300 flex flex-row">
       <div class="w-1000 bg-primary aspect-square"></div>
       <div class="w-1000 bg-secondary aspect-square"></div>
