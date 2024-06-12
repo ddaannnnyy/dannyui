@@ -28,7 +28,7 @@ Find and replace all on all files (CMD+SHIFT+F):
   - Phone
   - OTP
   - Switches, Radio, Checkbox
-  - Select
+  - ~~Select~~
   - Rating
 - Buttons
   - ~~Simple~~

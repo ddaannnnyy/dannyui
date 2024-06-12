@@ -8,7 +8,7 @@
       <span v-if="required" class="text-error">required</span></span
     >
     <textarea
-      class="p-150 gap-150 has-[:focus-visible]:border-base has-[:disabled]:text-base/40 *:invalid:text-error *:invalid:border-error flex w-full flex-row rounded border transition-all duration-100 has-[:disabled]:cursor-not-allowed"
+      class="p-150 gap-150 disabled:text-base/40 bg-neutral border-base ring-base/30 flex w-full flex-row rounded border focus-visible:ring-2"
       :name="name"
       :id="`textarea_${name}`"
       ref="textarea"
@@ -53,5 +53,9 @@ textarea {
 
 textarea::-webkit-scrollbar {
   display: none;
+}
+
+textarea:focus-visible {
+  outline: none;
 }
 </style>

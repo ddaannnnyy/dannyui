@@ -8,7 +8,7 @@
       <span v-if="required" class="text-error">required</span></span
     >
     <div
-      class="p-150 gap-150 has-[:focus-visible]:border-base has-[:disabled]:text-base/40 bg-neutral flex w-full flex-row rounded border"
+      class="p-150 gap-150 has-[:disabled]:text-base/40 has-[:disabled]:border-base/40 has-[:disabled]:bg-base/5 bg-neutral border-base ring-base/30 flex w-full flex-row rounded border has-[:focus-visible]:ring-2"
     >
       <span class="material-symbols-rounded"> reorder </span>
       <select
