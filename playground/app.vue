@@ -1,13 +1,8 @@
 <template>
   <div
-    class="gap-300 p-350 bg-primary flex h-screen w-screen flex-col items-center justify-center"
+    class="gap-300 p-350 bg-primary flex min-h-screen w-screen flex-col items-center justify-center"
   >
-    <UiForm
-      title="Sign In"
-      class="w-4000"
-      :showSubmit="true"
-      @submit="console.log('submitted')"
-    >
+    <UiForm title="Sign In" class="w-4000" @submit="console.log('submitted')">
       <UiInput
         name="name"
         label="Username"
@@ -17,40 +12,49 @@
         required
       ></UiInput>
       <UiInputPassword name="password" label="password"> </UiInputPassword>
-      <button>test</button>
-      <UiInputTextarea
-        name="text"
-        label="Text Area"
-        placeholder="placeholder..."
-        disabled
-        @input="console.log($event)"
+      <UiInputColor
+        name="color"
+        label="Favourite Color"
+        :default-colors="['#292E3A', '#1145C7', '#F4F4F4']"
       />
-    </form>
-    <UiInputPasswordRequirements></UiInputPasswordRequirements>
-    <div class="bg-neutral gap-100 p-300 flex flex-row">
-      <div class="w-1000 bg-primary aspect-square"></div>
-      <div class="w-1000 bg-secondary aspect-square"></div>
-      <div class="w-1000 bg-accent aspect-square"></div>
-      <div class="w-1000 bg-neutral aspect-square"></div>
-      <div class="w-1000 bg-base aspect-square"></div>
-      <div class="w-1000 bg-info aspect-square"></div>
-      <div class="w-1000 bg-success aspect-square"></div>
-      <div class="w-1000 bg-warning aspect-square"></div>
-      <div class="w-1000 bg-error aspect-square"></div>
-    </div>
-    <div class="bg-base gap-100 p-300 flex flex-row">
-      <div class="w-1000 bg-primary aspect-square"></div>
-      <div class="w-1000 bg-secondary aspect-square"></div>
-      <div class="w-1000 bg-accent aspect-square"></div>
-      <div class="w-1000 bg-neutral aspect-square"></div>
-      <div class="w-1000 bg-base aspect-square"></div>
-      <div class="w-1000 bg-info aspect-square"></div>
-      <div class="w-1000 bg-success aspect-square"></div>
-      <div class="w-1000 bg-warning aspect-square"></div>
-      <div class="w-1000 bg-error aspect-square"></div>
-    </div>
-    <span class="material-symbols-rounded"> search </span>
+      <UiInputDate type="date" name="color" label="Favourite Color" />
+      <UiInputTextarea name="color" label="Favourite Color" required />
+      <UiInputSelect name="select" label="Selection" :list-items="listItems" />
+      <UiInputRange
+        name="color"
+        label="Favourite Color"
+        required
+        :min="0"
+        :max="10"
+      />
+      <UiButton>Click Me</UiButton>
+      <UiButtonGrouped :buttons="groupedButtons" @click="console.log($event)"
+        >grouped</UiButtonGrouped
+      >
+    </UiForm>
   </div>
 </template>
 
-<script setup></script>
+<script setup lang="ts">
+const listItems = ref([
+  { value: "option", label: "label" },
+  { value: "option2", label: "label2" },
+  { value: "option3", label: "label3" },
+]);
+
+const groupedButtons = ref([
+  {
+    value: "Button 1",
+    label: "Button 1",
+  },
+  {
+    value: "Button 2",
+    label: "Button 2",
+  },
+  {
+    value: "Button 3",
+    label: "Button 3",
+    disabled: true,
+  },
+]);
+</script>

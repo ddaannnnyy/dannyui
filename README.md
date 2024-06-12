@@ -24,7 +24,7 @@ Find and replace all on all files (CMD+SHIFT+F):
   - Password
     - ~~Input~~
     - Password Requirements
-  - Range
+  - ~~Range~~
   - Phone
   - OTP
   - Switches, Radio, Checkbox
@@ -32,7 +32,7 @@ Find and replace all on all files (CMD+SHIFT+F):
   - Rating
 - Buttons
   - ~~Simple~~
-  - Grouped
+  - ~~Grouped~~
   - Floating Action
 - Accordion
 - Multi Stepper

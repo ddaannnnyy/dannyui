@@ -4,7 +4,10 @@
     class="has-[:disabled]:text-base/40 gap-100 max-w-full flex-col"
     :class="type === 'hidden' ? 'hidden' : 'flex'"
   >
-    {{ label }}
+    <span class="flex w-full flex-row items-center justify-between"
+      >{{ label }}
+      <span v-if="required" class="text-error">required</span></span
+    >
     <div
       class="p-150 gap-150 has-[:focus-visible]:border-base has-[:disabled]:text-base/40 bg-neutral flex w-full flex-row rounded border"
     >
@@ -37,16 +40,18 @@
 <script setup lang="ts">
 const {
   name,
-  type = "datetime-local",
+  type = "date",
   label,
   placeholder,
   disabled = false,
+  required = false,
 } = defineProps<{
   name: string;
   label: string;
   type: "datetime-local" | "date" | "month" | "week" | "time" | "hidden";
   placeholder?: string;
   disabled?: boolean;
+  required?: boolean;
 }>();
 </script>
 

@@ -3,7 +3,10 @@
     :for="name"
     class="has-[:disabled]:text-base/40 peer-invalid:text-error gap-100 flex max-w-full flex-col"
   >
-    {{ label }}
+    <span class="flex w-full flex-row items-center justify-between"
+      >{{ label }}
+      <span v-if="required" class="text-error">required</span></span
+    >
     <textarea
       class="p-150 gap-150 has-[:focus-visible]:border-base has-[:disabled]:text-base/40 *:invalid:text-error *:invalid:border-error flex w-full flex-row rounded border transition-all duration-100 has-[:disabled]:cursor-not-allowed"
       :name="name"
@@ -33,7 +36,7 @@ const {
 } = defineProps<{
   name: string;
   label: string;
-  placeholder: string;
+  placeholder?: string;
   disabled?: boolean;
   required?: boolean;
 }>();

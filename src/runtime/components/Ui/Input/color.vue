@@ -3,7 +3,10 @@
     :for="name"
     class="has-[:disabled]:text-base/40 gap-100 flex max-w-full flex-col"
   >
-    {{ label }}
+    <span class="flex w-full flex-row items-center justify-between"
+      >{{ label }}
+      <span v-if="required" class="text-error">required</span></span
+    >
     <div
       class="p-150 gap-150 has-[:focus-visible]:border-base has-[:disabled]:text-base/40 bg-neutral flex w-full flex-row rounded border"
     >
@@ -13,34 +16,39 @@
         :name="name"
         :disabled="disabled"
         class="w-full flex-grow"
-        @input="handleColorChange"
-        list="presetColors"
+        :list="defaultColors ? 'presetColors' : undefined"
       />
-      <datalist id="presetColors">
-        <option>#ff0000</option>
-        <option>#00ff00</option>
-        <option>#0000ff</option>
+      <datalist id="presetColors" v-if="defaultColors">
+        <option v-for="color in defaultColorsRef" :key="color">
+          {{ color }}
+        </option>
       </datalist>
     </div>
   </label>
 </template>
 
 <script setup lang="ts">
-const iconColor = ref(undefined as string | undefined);
 const {
   name,
   label,
   disabled = false,
+  required = false,
+  defaultColors,
 } = defineProps<{
   name: string;
   label: string;
   disabled?: boolean;
+  required?: boolean;
+  defaultColors?: string[];
 }>();
 
-function handleColorChange(event: any) {
-  iconColor.value = event.target.value;
-  console.log(iconColor.value);
-}
+const defaultColorsRef = ref([] as string[]);
+
+onMounted(() => {
+  if (defaultColors) {
+    defaultColorsRef.value = [...new Set(defaultColors)];
+  }
+});
 </script>
 
 <style scoped>

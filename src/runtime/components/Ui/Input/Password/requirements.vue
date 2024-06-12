@@ -1,11 +1,19 @@
 <template>
+  <div></div>
+</template>
+
+<script setup lang="ts"></script>
+
+<style scoped></style>
+
+<!-- <template>
   <div class="p-150 rounded border">
     <ul class="gap-50 flex flex-col">
       <li class="flex flex-row items-center justify-between">
         Is Valid
         <span
           class="material-symbols-rounded"
-          v-if="passwordRequirements.isValid"
+          v-if="returnPasswordCheck(password, challenge, illegalWords).isValid"
         >
           check
         </span>
@@ -14,7 +22,9 @@
         Is Valid Length
         <span
           class="material-symbols-rounded"
-          v-if="passwordRequirements.isValidLength"
+          v-if="
+            returnPasswordCheck(password, challenge, illegalWords).isValidLength
+          "
         >
           check
         </span>
@@ -23,7 +33,10 @@
         containsNumber
         <span
           class="material-symbols-rounded"
-          v-if="passwordRequirements.containsNumber"
+          v-if="
+            returnPasswordCheck(password, challenge, illegalWords)
+              .containsNumber
+          "
         >
           check
         </span>
@@ -32,7 +45,10 @@
         containsLowercase
         <span
           class="material-symbols-rounded"
-          v-if="passwordRequirements.containsLowercase"
+          v-if="
+            returnPasswordCheck(password, challenge, illegalWords)
+              .containsLowercase
+          "
         >
           check
         </span>
@@ -41,7 +57,10 @@
         containsUppercase
         <span
           class="material-symbols-rounded"
-          v-if="passwordRequirements.containsUppercase"
+          v-if="
+            returnPasswordCheck(password, challenge, illegalWords)
+              .containsUppercase
+          "
         >
           check
         </span>
@@ -50,7 +69,10 @@
         containsSymbol
         <span
           class="material-symbols-rounded"
-          v-if="passwordRequirements.containsSymbol"
+          v-if="
+            returnPasswordCheck(password, challenge, illegalWords)
+              .containsSymbol
+          "
         >
           check
         </span>
@@ -59,7 +81,10 @@
         matchesChallenge
         <span
           class="material-symbols-rounded"
-          v-if="passwordRequirements.matchesChallenge"
+          v-if="
+            returnPasswordCheck(password, challenge, illegalWords)
+              .matchesChallenge
+          "
         >
           check
         </span>
@@ -68,7 +93,10 @@
         containsIllegalWords
         <span
           class="material-symbols-rounded"
-          v-if="passwordRequirements.containsIllegalWords"
+          v-if="
+            returnPasswordCheck(password, challenge, illegalWords)
+              .containsIllegalWords
+          "
         >
           check
         </span>
@@ -115,57 +143,12 @@ const passwordRequirements = reactive({
   matchesChallenge: false,
 });
 
-watch(
-  [password, challenge],
-  ([newPassword, newChallenge], [prevPassword, prevChallenge]) => {
-    passwordRequirements.isValid = returnPasswordCheck(
-      newPassword,
-      illegalWords,
-      newChallenge,
-    ).isValid;
-    passwordRequirements.isValidLength = returnPasswordCheck(
-      newPassword,
-      illegalWords,
-      newChallenge,
-    ).isValidLength;
-    passwordRequirements.containsNumber = returnPasswordCheck(
-      newPassword,
-      illegalWords,
-      newChallenge,
-    ).containsNumber;
-    passwordRequirements.containsLowercase = returnPasswordCheck(
-      newPassword,
-      illegalWords,
-      newChallenge,
-    ).containsLowercase;
-    passwordRequirements.containsUppercase = returnPasswordCheck(
-      newPassword,
-      illegalWords,
-      newChallenge,
-    ).containsUppercase;
-    passwordRequirements.containsSymbol = returnPasswordCheck(
-      newPassword,
-      illegalWords,
-      newChallenge,
-    ).containsSymbol;
-    passwordRequirements.containsIllegalWords = returnPasswordCheck(
-      newPassword,
-      illegalWords,
-      newChallenge,
-    ).containsIllegalWords;
-    passwordRequirements.matchesChallenge = returnPasswordCheck(
-      newPassword,
-      illegalWords,
-      newChallenge,
-    ).matchesChallenge;
-  },
-);
-
 const returnPasswordCheck = (
   value: string,
   illegalWords: IllegalWordCheck[],
   challenge: string,
 ): PasswordValidity => {
+  console.log(value, "password");
   let passwordConditions = {
     isValid: false,
     isValidLength: false,
@@ -177,14 +160,18 @@ const returnPasswordCheck = (
     matchesChallenge: false,
   };
 
-  if (
-    illegalWords[illegalWords.length - 1].check !=
-    "Your password cannot contain a space"
-  ) {
-    illegalWords.push({
-      check: "Your password cannot contain a space",
-      value: " ",
-    });
+  try {
+    if (
+      illegalWords[illegalWords.length - 1].check !=
+      "Your password cannot contain a space"
+    ) {
+      illegalWords.push({
+        check: "Your password cannot contain a space",
+        value: " ",
+      });
+    }
+  } catch (error) {
+    console.log(error);
   }
 
   passwordConditions.isValidLength = value.length >= 8;
@@ -203,17 +190,19 @@ const returnPasswordCheck = (
     passwordConditions.containsSymbol &&
     passwordConditions.matchesChallenge;
 
-  illegalWords.forEach((check: any, index: number) => {
-    passwordConditions.containsIllegalWords[index].passes = !value
-      .toLocaleLowerCase()
-      .includes(check.value.toLocaleLowerCase());
-    if (passwordConditions.containsIllegalWords[index].passes === false) {
-      passwordConditions.isValid = false;
-    }
-  });
+  try {
+    illegalWords.forEach((check: any, index: number) => {
+      passwordConditions.containsIllegalWords[index].passes = !value
+        .toLocaleLowerCase()
+        .includes(check.value.toLocaleLowerCase());
+      if (passwordConditions.containsIllegalWords[index].passes === false) {
+        passwordConditions.isValid = false;
+      }
+    });
+  } catch (error) {}
 
   return passwordConditions;
 };
 </script>
 
-<style scoped></style>
+<style scoped></style> -->

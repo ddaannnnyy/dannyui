@@ -4,7 +4,10 @@
     class="has-[:disabled]:text-base/40 peer-invalid:text-error gap-100 max-w-full flex-col"
     :class="type === 'hidden' ? 'hidden' : 'flex'"
   >
-    {{ label }}
+    <span class="flex w-full flex-row items-center justify-between"
+      >{{ label }}
+      <span v-if="required" class="text-error">required</span></span
+    >
     <div
       class="p-150 gap-150 has-[:disabled]:text-base/40 has-[:disabled]:border-base/40 has-[:disabled]:bg-base/5 bg-neutral border-base ring-base/30 flex w-full flex-row rounded border has-[:focus-visible]:ring-2"
     >
