@@ -10,7 +10,7 @@
     <div
       class="p-150 gap-150 has-[:disabled]:text-base/40 has-[:disabled]:border-base/40 has-[:disabled]:bg-base/5 bg-neutral border-base ring-base/30 flex w-full flex-row rounded border has-[:focus-visible]:ring-2"
     >
-      <span class="material-symbols-rounded"> reorder </span>
+      <span class="material-symbols-rounded" v-if="showIcon"> reorder </span>
       <select
         :name="name"
         :id="`select-${name}`"
@@ -23,6 +23,7 @@
       </select>
     </div>
   </label>
+  <p v-if="!!helper" class="text-base/50">{{ helper }}</p>
 </template>
 
 <script setup lang="ts">
@@ -33,16 +34,23 @@ interface OptionArray {
 const {
   name,
   label,
-  disabled = false,
-  required = false,
+  helper,
+  disabled,
+  required,
   listItems,
-} = defineProps<{
+} = withDefaults(defineProps<{
   name: string;
   label: string;
+  helper?: string;
   disabled?: boolean;
   required?: boolean;
+  showIcon?: boolean;
   listItems: OptionArray[];
-}>();
+}>(), {
+  disabled: () => false,
+  required: () => false,
+  showIcon: () => true
+});
 </script>
 
 <style scoped>

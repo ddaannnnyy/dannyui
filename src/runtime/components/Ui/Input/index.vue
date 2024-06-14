@@ -12,7 +12,7 @@
       class="p-150 gap-150 has-[:disabled]:text-base/40 has-[:disabled]:border-base/40 has-[:disabled]:bg-base/5 bg-neutral border-base ring-base/30 flex w-full flex-row rounded border has-[:focus-visible]:ring-2"
     >
       <span
-        v-if="type === 'text'"
+        v-if="type === 'text' && showIcon"
         class="material-symbols-rounded"
         @mousedown.prevent
         @mousemove.prevent
@@ -23,7 +23,7 @@
         text_fields
       </span>
       <span
-        v-if="type === 'number'"
+        v-if="type === 'number' && showIcon"
         class="material-symbols-rounded"
         @mousedown.prevent
         @mousemove.prevent
@@ -34,7 +34,7 @@
         tag
       </span>
       <span
-        v-if="type === 'email'"
+        v-if="type === 'email' && showIcon"
         class="material-symbols-rounded"
         @mousedown.prevent
         @mousemove.prevent
@@ -45,7 +45,7 @@
         alternate_email
       </span>
       <span
-        v-if="type === 'url'"
+        v-if="type === 'url' && showIcon"
         class="material-symbols-rounded"
         @mousedown.prevent
         @mousemove.prevent
@@ -73,13 +73,13 @@
 const input = ref(null as any);
 const {
   name,
-  type = "text",
+  type,
   label,
   placeholder,
-  disabled = false,
-  required = false,
+  disabled,
+  required,
   helper,
-} = defineProps<{
+} = withDefaults(defineProps<{
   name: string;
   label: string;
   type: "text" | "number" | "email" | "url" | "hidden";
@@ -87,7 +87,13 @@ const {
   disabled?: boolean;
   required?: boolean;
   helper?: string;
-}>();
+  showIcon?: boolean;
+}>(), {
+  type: () => 'text',
+  disabled: () => false,
+  required: () => false,
+  showIcon: () => true
+});
 </script>
 
 <style scoped>

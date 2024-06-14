@@ -10,7 +10,7 @@
     <div
       class="p-150 gap-150 has-[:disabled]:text-base/40 has-[:disabled]:border-base/40 has-[:disabled]:bg-base/5 bg-neutral border-base ring-base/30 flex w-full flex-row rounded border has-[:focus-visible]:ring-2"
     >
-      <span class="material-symbols-rounded"> line_end </span>
+      <span class="material-symbols-rounded" v-if="showIcon"> line_end </span>
       <input
         type="range"
         :name="name"
@@ -25,6 +25,7 @@
       <span class="w-200">{{ selectedValue }}</span>
     </div>
   </label>
+  <p v-if="!!helper" class="text-base/50">{{ helper }}</p>
 </template>
 
 <script setup lang="ts">
@@ -33,21 +34,32 @@ const selectedValue = ref(undefined as number | undefined);
 const {
   name,
   label,
+  helper,
   min,
   max,
   step,
-  disabled = false,
-  required = false,
-} = defineProps<{
+  disabled,
+  required,
+  showIcon
+} = withDefaults(defineProps<{
   name: string;
   label: string;
+  helper?: string;
   min?: number;
   max?: number;
   step?: number;
   value?: number;
   disabled?: boolean;
   required?: boolean;
-}>();
+  showIcon?: boolean;
+}>(), {
+  min: () => 0,
+  max: () => 100,
+  step: () => 1,
+  disabled: () => false,
+  required: () => false,
+  showIcon: () => true
+});
 
 onMounted(() => {
   let minimum = min ?? 0;

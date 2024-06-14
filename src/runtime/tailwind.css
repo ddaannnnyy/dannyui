@@ -33,7 +33,6 @@
   }
 
   ::-webkit-scrollbar-track {
-    margin: 30px;
     background-color: var(--transparent);
   }
 

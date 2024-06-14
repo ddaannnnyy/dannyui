@@ -29,6 +29,11 @@ export default defineNuxtModule<ModuleOptions>({
     });
 
     /**
+     * Module Importer
+     */
+    await installModule("@nuxt/image");
+
+    /**
      * Tailwind css importer
      */
     _nuxt.options.css.push(resolve("./runtime/tailwind.css"));

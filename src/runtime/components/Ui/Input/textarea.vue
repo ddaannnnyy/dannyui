@@ -20,26 +20,31 @@
       @input="emit('input', $event.target.value)"
     ></textarea>
   </label>
+  <p v-if="!!helper" class="text-base/50">{{ helper }}</p>
 </template>
 
 <script setup lang="ts">
 import { useTextareaAutosize } from "@vueuse/core";
-
 const { textarea, input } = useTextareaAutosize({ styleProp: "minHeight" });
 
 const {
   name,
   label,
   placeholder,
-  disabled = false,
-  required = false,
-} = defineProps<{
+  helper,
+  disabled,
+  required,
+} = withDefaults(defineProps<{
   name: string;
   label: string;
   placeholder?: string;
+  helper?: string;
   disabled?: boolean;
   required?: boolean;
-}>();
+}>(), {
+  disabled: () => false,
+  required: () => false
+});
 
 const emit = defineEmits(["input"]);
 </script>

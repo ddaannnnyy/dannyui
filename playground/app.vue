@@ -2,7 +2,10 @@
   <div class="flex h-full w-full flex-row">
     <UiNavigationSidebar>
       <h3 class="p-100 w-full text-center">dannyui</h3>
-      <p class="p-100 w-full">An Low Opinion Nuxt Component Library</p>
+      <p class="p-100 w-full">A clean and balanced UI Library</p>
+      <div class="flex w-full items-center justify-center">
+        <UiAvatar />
+      </div>
       <div class="w-full">
         <UiAccordion title="Inputs" class="w-3000 p-150">
           <ul class="gap-50 flex flex-col items-stretch justify-stretch">
@@ -50,23 +53,46 @@
           helper="You can use your username if you registered before June 2020"
           required
         ></UiInput>
-        <UiInputPassword name="password" label="password"> </UiInputPassword>
+        <UiInputPassword
+          name="password"
+          label="password"
+          helper="helper text"
+          required
+        >
+        </UiInputPassword>
         <UiInputColor
           name="color"
           label="Favourite Color"
+          helper="helper text"
           :default-colors="['#292E3A', '#1145C7', '#F4F4F4']"
+          required
         />
-        <UiInputDate type="date" name="color" label="Favourite Color" />
-        <UiInputTextarea name="color" label="Favourite Color" required />
+        <UiInputDate
+          type="date"
+          name="color"
+          label="Favourite Color"
+          helper="helper text"
+          required
+        />
+        <UiInputTextarea
+          name="color"
+          label="Favourite Color"
+          helper="helper text"
+          required
+        />
         <UiInputSelect
           name="select"
           label="Selection"
+          helper="helper text"
+          required
           :list-items="listItems"
         />
         <UiInputRange
           name="color"
           label="Favourite Color"
+          helper="helper text"
           required
+          :step="0.1"
           :min="0"
           :max="10"
         />
@@ -80,6 +106,8 @@
         </UiAccordion>
         <UiAccordion title="Title"></UiAccordion>
         <UiAccordion title="Title"></UiAccordion>
+        <UiAvatarGroup class="h-500" @click="console.log($event)">
+        </UiAvatarGroup>
       </UiForm>
     </div>
   </div>

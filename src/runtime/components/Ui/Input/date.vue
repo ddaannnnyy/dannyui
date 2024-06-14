@@ -11,19 +11,19 @@
     <div
       class="p-150 gap-150 has-[:disabled]:text-base/40 has-[:disabled]:border-base/40 has-[:disabled]:bg-base/5 bg-neutral border-base ring-base/30 flex w-full flex-row rounded border has-[:focus-visible]:ring-2"
     >
-      <span v-if="type === 'date'" class="material-symbols-rounded">
+      <span v-if="type === 'date' && showIcon" class="material-symbols-rounded">
         calendar_today
       </span>
-      <span v-if="type === 'datetime-local'" class="material-symbols-rounded">
+      <span v-if="type === 'datetime-local' && showIcon" class="material-symbols-rounded">
         calendar_today
       </span>
-      <span v-if="type === 'month'" class="material-symbols-rounded">
+      <span v-if="type === 'month' && showIcon" class="material-symbols-rounded">
         date_range
       </span>
-      <span v-if="type === 'week'" class="material-symbols-rounded">
+      <span v-if="type === 'week' && showIcon" class="material-symbols-rounded">
         date_range
       </span>
-      <span v-if="type === 'time'" class="material-symbols-rounded">
+      <span v-if="type === 'time' && showIcon" class="material-symbols-rounded">
         schedule
       </span>
       <input
@@ -35,6 +35,7 @@
       />
     </div>
   </label>
+  <p v-if="!!helper" class="text-base/50">{{ helper }}</p>
 </template>
 
 <script setup lang="ts">
@@ -43,16 +44,25 @@ const {
   type = "date",
   label,
   placeholder,
-  disabled = false,
-  required = false,
-} = defineProps<{
+  helper,
+  disabled,
+  required,
+  showIcon
+} = withDefaults(defineProps<{
   name: string;
   label: string;
   type: "datetime-local" | "date" | "month" | "week" | "time" | "hidden";
   placeholder?: string;
+  helper?: string;
   disabled?: boolean;
   required?: boolean;
-}>();
+  showIcon?: boolean;
+}>(), {
+  type: () => 'date',
+  disabled: () => false,
+  required: () => false,
+  showIcon: () => true,
+});
 </script>
 
 <style scoped>
