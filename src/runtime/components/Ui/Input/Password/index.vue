@@ -3,7 +3,7 @@
     :for="name"
     class="has-[:disabled]:text-base/40 gap-100 flex max-w-full flex-col"
   >
-  <span class="flex w-full flex-row items-center justify-between"
+    <span class="flex w-full flex-row items-center justify-between"
       >{{ label }}
       <span v-if="required" class="text-error">required</span></span
     >
@@ -34,27 +34,25 @@
 </template>
 
 <script setup lang="ts">
-const {
-  name,
-  label,
-  placeholder,
-  helper,
-  disabled,
-  showIcon,
-  required
-} = withDefaults(defineProps<{
-  name: string;
-  label: string;
-  placeholder?: string;
-  helper?: string;
-  required?: boolean;
-  disabled?: boolean;
-  showIcon?: boolean;
-}>(), {
-  disabled: () => false,
-  showIcon: () => true,
-  required: () => false,
-});
+import { ref, withDefaults, defineProps } from "vue";
+
+const { name, label, placeholder, helper, disabled, showIcon, required } =
+  withDefaults(
+    defineProps<{
+      name: string;
+      label: string;
+      placeholder?: string;
+      helper?: string;
+      required?: boolean;
+      disabled?: boolean;
+      showIcon?: boolean;
+    }>(),
+    {
+      disabled: () => false,
+      showIcon: () => true,
+      required: () => false,
+    },
+  );
 
 const showPasswordAsPlainText = ref(false);
 </script>

@@ -17,6 +17,7 @@
 
 <script setup lang="ts">
 import { useElementSize } from "@vueuse/core";
+import { ref, withDefaults, defineProps, defineEmits } from "vue";
 
 const group = ref<MaybeRef>(null);
 const { height } = useElementSize(group);

@@ -27,30 +27,28 @@
 </template>
 
 <script setup lang="ts">
+import { withDefaults, defineProps } from "vue";
+
 interface OptionArray {
   value: string;
   label: string;
 }
-const {
-  name,
-  label,
-  helper,
-  disabled,
-  required,
-  listItems,
-} = withDefaults(defineProps<{
-  name: string;
-  label: string;
-  helper?: string;
-  disabled?: boolean;
-  required?: boolean;
-  showIcon?: boolean;
-  listItems: OptionArray[];
-}>(), {
-  disabled: () => false,
-  required: () => false,
-  showIcon: () => true
-});
+const { name, label, helper, disabled, required, listItems } = withDefaults(
+  defineProps<{
+    name: string;
+    label: string;
+    helper?: string;
+    disabled?: boolean;
+    required?: boolean;
+    showIcon?: boolean;
+    listItems: OptionArray[];
+  }>(),
+  {
+    disabled: () => false,
+    required: () => false,
+    showIcon: () => true,
+  },
+);
 </script>
 
 <style scoped>

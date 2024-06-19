@@ -70,30 +70,28 @@
 </template>
 
 <script setup lang="ts">
+import { ref, withDefaults, defineProps } from "vue";
+
 const input = ref(null as any);
-const {
-  name,
-  type,
-  label,
-  placeholder,
-  disabled,
-  required,
-  helper,
-} = withDefaults(defineProps<{
-  name: string;
-  label: string;
-  type: "text" | "number" | "email" | "url" | "hidden";
-  placeholder?: string;
-  disabled?: boolean;
-  required?: boolean;
-  helper?: string;
-  showIcon?: boolean;
-}>(), {
-  type: () => 'text',
-  disabled: () => false,
-  required: () => false,
-  showIcon: () => true
-});
+const { name, type, label, placeholder, disabled, required, helper } =
+  withDefaults(
+    defineProps<{
+      name: string;
+      label: string;
+      type: "text" | "number" | "email" | "url" | "hidden";
+      placeholder?: string;
+      disabled?: boolean;
+      required?: boolean;
+      helper?: string;
+      showIcon?: boolean;
+    }>(),
+    {
+      type: () => "text",
+      disabled: () => false,
+      required: () => false,
+      showIcon: () => true,
+    },
+  );
 </script>
 
 <style scoped>

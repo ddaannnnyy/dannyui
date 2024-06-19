@@ -25,26 +25,24 @@
 
 <script setup lang="ts">
 import { useTextareaAutosize } from "@vueuse/core";
+import { withDefaults, defineProps, defineEmits } from "vue";
+
 const { textarea, input } = useTextareaAutosize({ styleProp: "minHeight" });
 
-const {
-  name,
-  label,
-  placeholder,
-  helper,
-  disabled,
-  required,
-} = withDefaults(defineProps<{
-  name: string;
-  label: string;
-  placeholder?: string;
-  helper?: string;
-  disabled?: boolean;
-  required?: boolean;
-}>(), {
-  disabled: () => false,
-  required: () => false
-});
+const { name, label, placeholder, helper, disabled, required } = withDefaults(
+  defineProps<{
+    name: string;
+    label: string;
+    placeholder?: string;
+    helper?: string;
+    disabled?: boolean;
+    required?: boolean;
+  }>(),
+  {
+    disabled: () => false,
+    required: () => false,
+  },
+);
 
 const emit = defineEmits(["input"]);
 </script>

@@ -29,37 +29,33 @@
 </template>
 
 <script setup lang="ts">
+import { ref, withDefaults, defineProps, onMounted } from "vue";
+
 const selectedValue = ref(undefined as number | undefined);
 
-const {
-  name,
-  label,
-  helper,
-  min,
-  max,
-  step,
-  disabled,
-  required,
-  showIcon
-} = withDefaults(defineProps<{
-  name: string;
-  label: string;
-  helper?: string;
-  min?: number;
-  max?: number;
-  step?: number;
-  value?: number;
-  disabled?: boolean;
-  required?: boolean;
-  showIcon?: boolean;
-}>(), {
-  min: () => 0,
-  max: () => 100,
-  step: () => 1,
-  disabled: () => false,
-  required: () => false,
-  showIcon: () => true
-});
+const { name, label, helper, min, max, step, disabled, required, showIcon } =
+  withDefaults(
+    defineProps<{
+      name: string;
+      label: string;
+      helper?: string;
+      min?: number;
+      max?: number;
+      step?: number;
+      value?: number;
+      disabled?: boolean;
+      required?: boolean;
+      showIcon?: boolean;
+    }>(),
+    {
+      min: () => 0,
+      max: () => 100,
+      step: () => 1,
+      disabled: () => false,
+      required: () => false,
+      showIcon: () => true,
+    },
+  );
 
 onMounted(() => {
   let minimum = min ?? 0;

@@ -21,6 +21,8 @@
 </template>
 
 <script setup lang="ts">
+import { ref, defineProps } from "vue";
+
 const show = ref(false);
 const { title } = defineProps<{
   title: string;

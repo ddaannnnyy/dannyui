@@ -13,6 +13,8 @@
 </template>
 
 <script setup lang="ts">
+import { ref, defineProps, defineEmits } from "vue";
+
 const form = ref(undefined as HTMLFormElement | undefined);
 const { title, showSubmit = false } = defineProps<{
   title: string;

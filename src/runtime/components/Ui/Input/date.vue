@@ -14,10 +14,16 @@
       <span v-if="type === 'date' && showIcon" class="material-symbols-rounded">
         calendar_today
       </span>
-      <span v-if="type === 'datetime-local' && showIcon" class="material-symbols-rounded">
+      <span
+        v-if="type === 'datetime-local' && showIcon"
+        class="material-symbols-rounded"
+      >
         calendar_today
       </span>
-      <span v-if="type === 'month' && showIcon" class="material-symbols-rounded">
+      <span
+        v-if="type === 'month' && showIcon"
+        class="material-symbols-rounded"
+      >
         date_range
       </span>
       <span v-if="type === 'week' && showIcon" class="material-symbols-rounded">
@@ -39,6 +45,8 @@
 </template>
 
 <script setup lang="ts">
+import { withDefaults, defineProps } from "vue";
+
 const {
   name,
   type = "date",
@@ -47,22 +55,25 @@ const {
   helper,
   disabled,
   required,
-  showIcon
-} = withDefaults(defineProps<{
-  name: string;
-  label: string;
-  type: "datetime-local" | "date" | "month" | "week" | "time" | "hidden";
-  placeholder?: string;
-  helper?: string;
-  disabled?: boolean;
-  required?: boolean;
-  showIcon?: boolean;
-}>(), {
-  type: () => 'date',
-  disabled: () => false,
-  required: () => false,
-  showIcon: () => true,
-});
+  showIcon,
+} = withDefaults(
+  defineProps<{
+    name: string;
+    label: string;
+    type: "datetime-local" | "date" | "month" | "week" | "time" | "hidden";
+    placeholder?: string;
+    helper?: string;
+    disabled?: boolean;
+    required?: boolean;
+    showIcon?: boolean;
+  }>(),
+  {
+    type: () => "date",
+    disabled: () => false,
+    required: () => false,
+    showIcon: () => true,
+  },
+);
 </script>
 
 <style scoped>
