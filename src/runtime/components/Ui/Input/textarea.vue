@@ -17,7 +17,7 @@
       :required="required"
       :disabled="disabled"
       rows="3"
-      @input="emit('input', $event.target.value)"
+      @input="handleEmit"
     ></textarea>
   </label>
   <p v-if="!!helper" class="text-base/50">{{ helper }}</p>
@@ -44,7 +44,14 @@ const { name, label, placeholder, helper, disabled, required } = withDefaults(
   },
 );
 
-const emit = defineEmits(["input"]);
+const emit = defineEmits(['input']);
+
+  function handleEmit($event: any) {
+    if (!$event.target) return;
+    if ($event.target.value) {
+      emit('input', $event.target.value);
+    }
+  }
 </script>
 
 <style scoped>

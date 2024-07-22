@@ -38,6 +38,7 @@
         :disabled="disabled"
         :placeholder="placeholder"
         class="w-full flex-grow bg-transparent"
+        @input="handleEmit"
       />
     </div>
   </label>
@@ -74,6 +75,15 @@ const {
     showIcon: () => true,
   },
 );
+
+const emit = defineEmits(['input']);
+
+  function handleEmit($event: any) {
+    if (!$event.target) return;
+    if ($event.target.value) {
+      emit('input', $event.target.value);
+    }
+  }
 </script>
 
 <style scoped>

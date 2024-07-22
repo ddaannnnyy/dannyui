@@ -61,6 +61,7 @@
         :disabled="disabled"
         :placeholder="placeholder"
         :required="required"
+        @input="handleEmit"
         ref="input"
         class="w-full flex-grow bg-transparent"
       />
@@ -73,6 +74,7 @@
 import { ref, withDefaults, defineProps } from "vue";
 
 const input = ref(null as any);
+
 const { name, type, label, placeholder, disabled, required, helper } =
   withDefaults(
     defineProps<{
@@ -92,6 +94,15 @@ const { name, type, label, placeholder, disabled, required, helper } =
       showIcon: () => true,
     },
   );
+
+  const emit = defineEmits(['input']);
+
+  function handleEmit($event: any) {
+    if (!$event.target) return;
+    if ($event.target.value) {
+      emit('input', $event.target.value);
+    }
+  }
 </script>
 
 <style scoped>

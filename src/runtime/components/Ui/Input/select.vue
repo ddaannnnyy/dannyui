@@ -16,6 +16,7 @@
         :id="`select-${name}`"
         :disabled="disabled"
         class="flex-grow"
+        @input="handleEmit"
       >
         <option v-for="option in listItems" :value="option.value">
           {{ option.label }}
@@ -49,6 +50,15 @@ const { name, label, helper, disabled, required, listItems } = withDefaults(
     showIcon: () => true,
   },
 );
+
+const emit = defineEmits(['input']);
+
+  function handleEmit($event: any) {
+    if (!$event.target) return;
+    if ($event.target.value) {
+      emit('input', $event.target.value);
+    }
+  }
 </script>
 
 <style scoped>

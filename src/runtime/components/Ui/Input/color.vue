@@ -19,6 +19,7 @@
         :disabled="disabled"
         class="w-full flex-grow"
         :list="defaultColors ? 'presetColors' : undefined"
+        @input="handleEmit"
       />
       <datalist id="presetColors" v-if="defaultColors" class="w-full">
         <option v-for="color in defaultColorsRef" :key="color">
@@ -58,6 +59,15 @@ onMounted(() => {
     defaultColorsRef.value = [...new Set(defaultColors)];
   }
 });
+
+const emit = defineEmits(['input']);
+
+  function handleEmit($event: any) {
+    if (!$event.target) return;
+    if ($event.target.value) {
+      emit('input', $event.target.value);
+    }
+  }
 </script>
 
 <style scoped>

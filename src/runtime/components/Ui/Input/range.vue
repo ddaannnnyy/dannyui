@@ -21,6 +21,7 @@
         :step="step"
         class="mx-100 flex-grow"
         v-model="selectedValue"
+        @input="handleEmit"
       />
       <span class="w-200">{{ selectedValue }}</span>
     </div>
@@ -62,6 +63,15 @@ onMounted(() => {
   let maxmimum = max ?? 100;
   selectedValue.value = Math.round((minimum + maxmimum) / 2);
 });
+
+const emit = defineEmits(['input']);
+
+  function handleEmit($event: any) {
+    if (!$event.target) return;
+    if ($event.target.value) {
+      emit('input', $event.target.value);
+    }
+  }
 </script>
 
 <style scoped>
