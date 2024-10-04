@@ -1,7 +1,7 @@
 <template>
   <form
     @submit.prevent
-    class="gap-150 p-300 bg-neutral flex flex-col rounded-xl"
+    class="gap-150 p-300 flex flex-col rounded-xl"
     ref="form"
   >
     <h2 class="pb-150">{{ title }}</h2>
@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, defineProps, defineEmits } from "vue";
+import { ref } from "vue";
 
 const form = ref(undefined as HTMLFormElement | undefined);
 const { title, showSubmit = false } = defineProps<{

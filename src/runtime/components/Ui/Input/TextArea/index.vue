@@ -8,7 +8,7 @@
       <span v-if="required" class="text-error">required</span></span
     >
     <textarea
-      class="p-150 gap-150 disabled:text-base/40 bg-neutral border-base ring-base/30 flex w-full flex-row rounded border focus-visible:ring-2"
+      class="p-150 gap-150 disabled:text-base/40 border-base ring-base/30 flex w-full flex-row rounded border focus-visible:ring-2"
       :name="name"
       :id="`textarea_${name}`"
       ref="textarea"
@@ -25,33 +25,31 @@
 
 <script setup lang="ts">
 import { useTextareaAutosize } from "@vueuse/core";
-import { withDefaults, defineProps, defineEmits } from "vue";
 
 const { textarea, input } = useTextareaAutosize({ styleProp: "minHeight" });
 
-const { name, label, placeholder, helper, disabled, required } = withDefaults(
-  defineProps<{
-    name: string;
-    label: string;
-    placeholder?: string;
-    helper?: string;
-    disabled?: boolean;
-    required?: boolean;
-  }>(),
-  {
-    disabled: () => false,
-    required: () => false,
-  },
-);
+const {
+  name,
+  label,
+  placeholder,
+  helper,
+  disabled = false,
+  required = false,
+} = defineProps<{
+  name: string;
+  label: string;
+  placeholder?: string;
+  helper?: string;
+  disabled?: boolean;
+  required?: boolean;
+}>();
 
-const emit = defineEmits(['input']);
+const emit = defineEmits(["input"]);
 
-  function handleEmit($event: any) {
-    if (!$event.target) return;
-    if ($event.target.value) {
-      emit('input', $event.target.value);
-    }
-  }
+function handleEmit($event: any) {
+  if (!$event.target) return;
+  emit("input", $event.target.value);
+}
 </script>
 
 <style scoped>

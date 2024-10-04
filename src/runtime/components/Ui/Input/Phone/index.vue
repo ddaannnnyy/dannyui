@@ -10,25 +10,15 @@
     <div
       class="p-150 gap-150 has-[:disabled]:text-base/40 has-[:disabled]:border-base/40 has-[:disabled]:bg-base/5 border-base ring-base/30 flex w-full flex-row rounded border has-[:focus-visible]:ring-2"
     >
-      <span class="material-symbols-rounded" v-if="showIcon"> password </span>
+      <span class="material-symbols-rounded" v-if="showIcon"> phone </span>
       <input
-        :type="showPasswordAsPlainText ? 'text' : 'password'"
+        type="tel"
         :name="name"
         :disabled="disabled"
         :placeholder="placeholder"
         class="w-full flex-grow bg-transparent"
         @input="handleEmit"
       />
-      <button
-        class="flex h-full items-center justify-center"
-        @click.prevent="showPasswordAsPlainText = !showPasswordAsPlainText"
-        @mouseleave="showPasswordAsPlainText = false"
-      >
-        <span class="material-symbols-rounded" v-if="showPasswordAsPlainText">
-          visibility_off
-        </span>
-        <span class="material-symbols-rounded" v-else> visibility </span>
-      </button>
     </div>
     <p v-if="!!helper" class="text-base/50">{{ helper }}</p>
   </label>

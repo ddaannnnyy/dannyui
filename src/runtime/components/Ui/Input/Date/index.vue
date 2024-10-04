@@ -9,7 +9,7 @@
       <span v-if="required" class="text-error">required</span></span
     >
     <div
-      class="p-150 gap-150 has-[:disabled]:text-base/40 has-[:disabled]:border-base/40 has-[:disabled]:bg-base/5 bg-neutral border-base ring-base/30 flex w-full flex-row rounded border has-[:focus-visible]:ring-2"
+      class="p-150 gap-150 has-[:disabled]:text-base/40 has-[:disabled]:border-base/40 has-[:disabled]:bg-base/5 border-base ring-base/30 flex w-full flex-row rounded border has-[:focus-visible]:ring-2"
     >
       <span v-if="type === 'date' && showIcon" class="material-symbols-rounded">
         calendar_today
@@ -46,44 +46,32 @@
 </template>
 
 <script setup lang="ts">
-import { withDefaults, defineProps } from "vue";
-
 const {
   name,
   type = "date",
   label,
   placeholder,
   helper,
-  disabled,
-  required,
-  showIcon,
-} = withDefaults(
-  defineProps<{
-    name: string;
-    label: string;
-    type: "datetime-local" | "date" | "month" | "week" | "time" | "hidden";
-    placeholder?: string;
-    helper?: string;
-    disabled?: boolean;
-    required?: boolean;
-    showIcon?: boolean;
-  }>(),
-  {
-    type: () => "date",
-    disabled: () => false,
-    required: () => false,
-    showIcon: () => true,
-  },
-);
+  disabled = false,
+  required = false,
+  showIcon = true,
+} = defineProps<{
+  name: string;
+  label: string;
+  type?: "datetime-local" | "date" | "month" | "week" | "time" | "hidden";
+  placeholder?: string;
+  helper?: string;
+  disabled?: boolean;
+  required?: boolean;
+  showIcon?: boolean;
+}>();
 
-const emit = defineEmits(['input']);
+const emit = defineEmits(["input"]);
 
-  function handleEmit($event: any) {
-    if (!$event.target) return;
-    if ($event.target.value) {
-      emit('input', $event.target.value);
-    }
-  }
+function handleEmit($event: any) {
+  if (!$event.target) return;
+  emit("input", $event.target.value);
+}
 </script>
 
 <style scoped>

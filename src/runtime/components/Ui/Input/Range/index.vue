@@ -8,7 +8,7 @@
       <span v-if="required" class="text-error">required</span></span
     >
     <div
-      class="p-150 gap-150 has-[:disabled]:text-base/40 has-[:disabled]:border-base/40 has-[:disabled]:bg-base/5 bg-neutral border-base ring-base/30 flex w-full flex-row rounded border has-[:focus-visible]:ring-2"
+      class="p-150 gap-150 has-[:disabled]:text-base/40 has-[:disabled]:border-base/40 has-[:disabled]:bg-base/5 border-base ring-base/30 flex w-full flex-row rounded border has-[:focus-visible]:ring-2"
     >
       <span class="material-symbols-rounded" v-if="showIcon"> line_end </span>
       <input
@@ -30,33 +30,32 @@
 </template>
 
 <script setup lang="ts">
-import { ref, withDefaults, defineProps, onMounted } from "vue";
+import { ref, onMounted } from "vue";
 
 const selectedValue = ref(undefined as number | undefined);
 
-const { name, label, helper, min, max, step, disabled, required, showIcon } =
-  withDefaults(
-    defineProps<{
-      name: string;
-      label: string;
-      helper?: string;
-      min?: number;
-      max?: number;
-      step?: number;
-      value?: number;
-      disabled?: boolean;
-      required?: boolean;
-      showIcon?: boolean;
-    }>(),
-    {
-      min: () => 0,
-      max: () => 100,
-      step: () => 1,
-      disabled: () => false,
-      required: () => false,
-      showIcon: () => true,
-    },
-  );
+const {
+  name,
+  label,
+  helper,
+  min = 0,
+  max = 100,
+  step = 1,
+  disabled = false,
+  required = false,
+  showIcon = false,
+} = defineProps<{
+  name: string;
+  label: string;
+  helper?: string;
+  min?: number;
+  max?: number;
+  step?: number;
+  value?: number;
+  disabled?: boolean;
+  required?: boolean;
+  showIcon?: boolean;
+}>();
 
 onMounted(() => {
   let minimum = min ?? 0;
@@ -64,14 +63,12 @@ onMounted(() => {
   selectedValue.value = Math.round((minimum + maxmimum) / 2);
 });
 
-const emit = defineEmits(['input']);
+const emit = defineEmits(["input"]);
 
-  function handleEmit($event: any) {
-    if (!$event.target) return;
-    if ($event.target.value) {
-      emit('input', $event.target.value);
-    }
-  }
+function handleEmit($event: any) {
+  if (!$event.target) return;
+  emit("input", $event.target.value);
+}
 </script>
 
 <style scoped>

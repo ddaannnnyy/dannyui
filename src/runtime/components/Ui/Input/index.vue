@@ -9,7 +9,7 @@
       <span v-if="required" class="text-error">required</span></span
     >
     <div
-      class="p-150 gap-150 has-[:disabled]:text-base/40 has-[:disabled]:border-base/40 has-[:disabled]:bg-base/5 bg-neutral border-base ring-base/30 flex w-full flex-row rounded border has-[:focus-visible]:ring-2"
+      class="p-150 gap-150 has-[:disabled]:text-base/40 has-[:disabled]:border-base/40 has-[:disabled]:bg-base/5 border-base ring-base/30 flex w-full flex-row rounded border has-[:focus-visible]:ring-2"
     >
       <span
         v-if="type === 'text' && showIcon"
@@ -71,38 +71,36 @@
 </template>
 
 <script setup lang="ts">
-import { ref, withDefaults, defineProps } from "vue";
+import { ref } from "vue";
 
 const input = ref(null as any);
 
-const { name, type, label, placeholder, disabled, required, helper } =
-  withDefaults(
-    defineProps<{
-      name: string;
-      label: string;
-      type: "text" | "number" | "email" | "url" | "hidden";
-      placeholder?: string;
-      disabled?: boolean;
-      required?: boolean;
-      helper?: string;
-      showIcon?: boolean;
-    }>(),
-    {
-      type: () => "text",
-      disabled: () => false,
-      required: () => false,
-      showIcon: () => true,
-    },
-  );
+const {
+  name,
+  type = "text",
+  label,
+  placeholder,
+  helper,
+  disabled = false,
+  required = false,
+  showIcon = true,
+} = defineProps<{
+  name: string;
+  label: string;
+  type?: "text" | "number" | "email" | "url" | "hidden";
+  placeholder?: string;
+  disabled?: boolean;
+  required?: boolean;
+  helper?: string;
+  showIcon?: boolean;
+}>();
 
-  const emit = defineEmits(['input']);
+const emit = defineEmits(["input"]);
 
-  function handleEmit($event: any) {
-    if (!$event.target) return;
-    if ($event.target.value) {
-      emit('input', $event.target.value);
-    }
-  }
+function handleEmit($event: any) {
+  if (!$event.target) return;
+  emit("input", $event.target.value);
+}
 </script>
 
 <style scoped>
