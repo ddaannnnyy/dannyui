@@ -1,16 +1,17 @@
 <template>
-  <NuxtImg
+  <img
     class="aspect-square max-h-full rounded-full object-cover object-center"
     :src="src"
-    loading="lazy"
-    format="webp"
-  ></NuxtImg>
+    :alt="name"
+  />
 </template>
 
 <script setup lang="ts">
-const { src = "https://www.w3schools.com/howto/img_avatar.png" } = defineProps<{
-  src: string;
-}>();
+const { name, src = "https://www.w3schools.com/howto/img_avatar.png" } =
+  defineProps<{
+    name: string;
+    src: string;
+  }>();
 </script>
 
 <style scoped></style>

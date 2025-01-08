@@ -29,9 +29,9 @@ export default defineNuxtModule<ModuleOptions>({
     });
 
     /**
-     * Module Importer
+     * @name VueUse Importer
      */
-    await installModule("@nuxt/image");
+    await installModule("@vueuse/nuxt");
 
     /**
      * Tailwind css importer
