@@ -1,11 +1,11 @@
 <template>
-    <input :type v-bind="$attrs" @input="onInput" :name :class="classStyles" :inputmode="computedInputMode">
+    <input :type v-bind="$attrs" @input="onInput" :id :class="classStyles" :inputmode="computedInputMode">
 </template>
 
 <script setup lang="ts">
 export type CommonInputTypes = 'text' | 'email' | 'number' | 'url';
 export interface IInputCommonProps {
-    name: string;
+    id: string;
     type?: CommonInputTypes;
 }
 defineOptions({ inheritAttrs: false });
