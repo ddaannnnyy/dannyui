@@ -10,7 +10,7 @@ export interface IInputCommonProps {
 }
 defineOptions({ inheritAttrs: false });
 
-const barebones = useBarebones();
+const barebones = useLayerOptions('barebones');
 
 const props = withDefaults(defineProps<IInputCommonProps>(), { type: 'text' });
 const emit = defineEmits<{
