@@ -1,1 +1,12 @@
 @import "tailwindcss";
+
+/***
+AI hack warning:
+This causes the source to always be the root of the directory. 
+Otherwise tailwind will load base styles, but other utilities will not work.
+
+Consuming apps build from their own cwd; 
+register this package so utilities in layer templates are scanned 
+(paths are relative to this file). 
+***/
+@source "../../../";
