@@ -5,6 +5,13 @@ const { resolve } = createResolver(import.meta.url)
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
+  runtimeConfig: {
+    public: {
+      dannyui: {
+        barebones: true,
+      },
+    },
+  },
   css: [
     resolve('app/assets/css/dannyui.css'),
     resolve('app/assets/css/tailwind.css')
@@ -14,5 +21,5 @@ export default defineNuxtConfig({
     resolve('modules/initial-setup.ts'),
     '@vueuse/nuxt',
     '@nuxt/eslint'
-  ]
+  ],
 })
