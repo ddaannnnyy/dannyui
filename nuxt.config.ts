@@ -10,5 +10,9 @@ export default defineNuxtConfig({
     resolve('app/assets/css/tailwind.css')
   ],
   devtools: { enabled: true },
-  modules: [resolve('modules/initial-setup.ts'), '@vueuse/nuxt']
+  modules: [
+    resolve('modules/initial-setup.ts'),
+    '@vueuse/nuxt',
+    '@nuxt/eslint'
+  ]
 })
