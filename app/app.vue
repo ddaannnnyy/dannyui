@@ -5,6 +5,7 @@
         <ui-input-common id="test-input" type="text" autocomplete="off" placeholder="placeholder text"
           @submit="console.log($event)" />
       </ui-input-label>
+      <UiButtonDropdown size="xl" full-width :items="[{id: '0', label: 'item', emit: 'emit'}]" label="Select"></UiButtonDropdown>
       <div class="flex flex-row justify-end gap-2">
         <ui-button size="sm" @click="console.log($event)">
           Submit

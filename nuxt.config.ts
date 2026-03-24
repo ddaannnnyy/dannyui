@@ -22,4 +22,9 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     '@nuxt/eslint'
   ],
+  eslint: {
+    config: {
+      standalone: false,
+    },
+  },
 })
