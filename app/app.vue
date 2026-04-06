@@ -1,16 +1,15 @@
 <template>
   <div class="flex items-center justify-center h-screen w-screen bg-sky-900">
-    <form @submit.prevent class="bg-white rounded p-4 max-w-md w-full flex flex-col gap-2">
-      <ui-input-label name="test-input" label="label">
-        <ui-input-common id="test-input" type="text" autocomplete="off" placeholder="placeholder text"
-          @submit="console.log($event)" />
-      </ui-input-label>
-      <UiButtonDropdown size="xl" full-width :items="[{id: '0', label: 'item', emit: 'emit'}]" label="Select"></UiButtonDropdown>
-      <div class="flex flex-row justify-end gap-2">
-        <ui-button size="sm" @click="console.log($event)">
-          Submit
-        </ui-button>
-      </div>
-    </form>
+    <ui-form>
+      <template #content>
+        <ui-input-label name="test-input" label="label" required>
+          <ui-input-common
+            id="test-input" type="text" autocomplete="off" required placeholder="placeholder text"
+            @submit="console.log($event)"
+          />
+        </ui-input-label>
+        <UiButtonDropdown size="xl" full-width :items="[{ id: '0', label: 'item', emit: 'emit' }]" label="Select" />
+      </template>
+    </ui-form>
   </div>
 </template>
