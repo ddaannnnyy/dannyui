@@ -3,8 +3,8 @@ const testValue = ref('test value');
 </script>
 
 <template>
-  <div class="flex flex-col gap-6 items-center justify-center h-screen w-screen bg-sky-900">
-    <!-- <ui-form @submit:fields="console.log($event)">
+  <div class="flex flex-col gap-6 items-center justify-start h-screen w-screen bg-sky-900">
+    <ui-form @submit:fields="console.log($event)">
       <template #heading>
         Heading
       </template>
@@ -18,10 +18,11 @@ const testValue = ref('test value');
         <UiButtonDropdown size="xl" full-width :items="[{ id: '0', label: 'item', emit: 'emit' }]" label="Select" />
       </template>
     </ui-form>
-    <p>{{ testValue }}</p> -->
-    <div class="min-w-xs">
+    <ui-input-dropdown id="dd" :items="[{ id: '1', label: 'One', emit: 'one' }, { id: '2', label: 'Two', emit: 'two' }]" />
+    <p>{{ testValue }}</p>
+    <!-- <div class="min-w-xs">
       <ui-input-address name="address" label="Address Label" />
-    </div>
+    </div> -->
   </div>
 </template>
 

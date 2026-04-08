@@ -39,11 +39,15 @@ onClickOutside(dropdown, () => {
 }, { ignore: [dropdownButton] });
 
 onMounted(() => {
-  window.addEventListener('resize', calculateDropdownPosition);
+  window.addEventListener('resize', () => {
+    dropdownPosition.value = calculateDropdownPosition(dropdownButton.value) ?? 'below';
+  });
 });
 
 onUnmounted(() => {
-  window.removeEventListener('resize', calculateDropdownPosition);
+  window.removeEventListener('resize', () => {
+    dropdownPosition.value = calculateDropdownPosition(dropdownButton.value) ?? 'below';
+  });
 });
 
 const dropdownListClasses = computed(() => {
@@ -52,30 +56,10 @@ const dropdownListClasses = computed(() => {
   return ['p-3', 'bg-white', 'rounded', 'text-xs', 'select-none', 'shadow-lg', ' max-h-[200px]'];
 });
 
-function calculateDropdownPosition() {
-  if (!dropdownButton.value)
-    return;
-  const { top, bottom } = useElementBounding(dropdownButton);
-  // const buttonRect = dropdownButton.value.getBoundingClientRect();
-
-  const viewportHeight = window.innerHeight;
-  const estimatedDropdownHeight = 200;
-
-  const spaceBelow = viewportHeight - bottom.value;
-  const spaceAbove = top.value;
-
-  if (spaceBelow < estimatedDropdownHeight && spaceAbove > estimatedDropdownHeight) {
-    dropdownPosition.value = 'above';
-  }
-  else {
-    dropdownPosition.value = 'below';
-  }
-}
-
 function toggleDropdown() {
   if (!open.value) {
     nextTick(() => {
-      calculateDropdownPosition();
+      dropdownPosition.value = calculateDropdownPosition(dropdownButton.value) ?? 'below';
     });
   }
   open.value = !open.value;
