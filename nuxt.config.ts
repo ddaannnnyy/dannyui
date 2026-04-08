@@ -1,6 +1,6 @@
-import { createResolver } from '@nuxt/kit'
+import { createResolver } from '@nuxt/kit';
 // Resolve will enable the tailwind files to work in parents.
-const { resolve } = createResolver(import.meta.url)
+const { resolve } = createResolver(import.meta.url);
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -9,6 +9,9 @@ export default defineNuxtConfig({
     public: {
       dannyui: {
         barebones: true,
+        google: {
+          mapsApiKey: undefined as string | undefined
+        }
       },
     },
   },
@@ -27,4 +30,4 @@ export default defineNuxtConfig({
       standalone: false,
     },
   },
-})
+});

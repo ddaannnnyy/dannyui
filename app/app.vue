@@ -20,7 +20,7 @@ const testValue = ref('test value');
     </ui-form>
     <p>{{ testValue }}</p> -->
     <div class="min-w-md">
-      <ui-form-auth-login debug-username="hello@danhebdon.com" @submit:login="console.log($event)" />
+      <ui-input-address name="address" label="Address Label" />
     </div>
   </div>
 </template>
