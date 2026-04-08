@@ -4,21 +4,24 @@ const testValue = ref('test value');
 
 <template>
   <div class="flex flex-col gap-6 items-center justify-center h-screen w-screen bg-sky-900">
-    <ui-form @submit:fields="console.log($event)">
+    <!-- <ui-form @submit:fields="console.log($event)">
+      <template #heading>
+        Heading
+      </template>
       <template #content>
         <ui-input-label name="test-input" label="label" required>
           <ui-input-common
-            id="test-input" type="text" :value="testValue" autocomplete="off" required placeholder="placeholder text"
+            id="test-input" type="text" :value="testValue" autocomplete="off" placeholder="placeholder text"
             @input:value="testValue = $event"
           />
         </ui-input-label>
         <UiButtonDropdown size="xl" full-width :items="[{ id: '0', label: 'item', emit: 'emit' }]" label="Select" />
       </template>
     </ui-form>
-    <p>{{ testValue }}</p>
-    <!-- <div class="min-w-md">
-      <ui-form-auth-login />
-    </div> -->
+    <p>{{ testValue }}</p> -->
+    <div class="min-w-md">
+      <ui-form-auth-login debug-username="hello@danhebdon.com" @submit:login="console.log($event)" />
+    </div>
   </div>
 </template>
 

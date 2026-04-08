@@ -18,7 +18,7 @@ const emit = defineEmits<{
 const barebones = useLayerOptions('barebones');
 
 const { type, value } = toRefs(props);
-const inputValue = ref<string>();
+const inputValue = ref('');
 
 const classStyles = computed(() => {
   if (!barebones)
@@ -41,19 +41,19 @@ const computedInputMode = computed(() => {
 });
 
 watch(() => value.value, (newValue) => {
-  inputValue.value = newValue;
-  if (newValue) {
+  inputValue.value = newValue ?? '';
+  if (newValue)
     emit('input:value', newValue);
-  }
 });
 
 onMounted(() => {
-  if (value.value)
+  if (value.value != null)
     inputValue.value = value.value;
 });
 
 function onInput(event: Event) {
   const target = event.target as HTMLInputElement;
+  inputValue.value = target.value;
   emit('input:event', event);
   emit('input:target', target);
   emit('input:value', target.value);

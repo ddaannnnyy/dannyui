@@ -14,6 +14,7 @@ interface IFormEmits {
   'submit': [value: void]
   'submit:event': [value: SubmitEvent]
   'submit:fields': [value: IFormValue[]]
+  [key: string]: [value: any]
 }
 defineOptions({ inheritAttrs: false });
 const props = defineProps<IFormProps>();
@@ -28,7 +29,7 @@ const dropdownListClasses = computed(() => {
 });
 
 function handleSubmit(event: SubmitEvent) {
-  emit('submit');
+  emit('submit', undefined);
   emit('submit:event', event);
   emit('submit:fields', buildFormFields(event));
 }
@@ -36,12 +37,12 @@ function handleSubmit(event: SubmitEvent) {
 function buildFormFields(event: SubmitEvent) {
   const form = event.target as HTMLFormElement;
   const fields: IFormValue[] = [];
-  for (const el of Array.from(form.elements)) {
-    if (el instanceof HTMLInputElement || el instanceof HTMLTextAreaElement || el instanceof HTMLSelectElement) {
+  for (const element of Array.from(form.elements)) {
+    if (element instanceof HTMLInputElement || element instanceof HTMLTextAreaElement || element instanceof HTMLSelectElement || element instanceof HTMLFormElement) {
       fields.push({
-        inputID: el.id ?? el.name ?? el.type,
-        value: el.value,
-        valid: el.validity.valid
+        inputID: element.id ?? element.name ?? element.type,
+        value: element.value,
+        valid: element.validity.valid
       });
     }
   }
@@ -58,7 +59,7 @@ function buildFormFields(event: SubmitEvent) {
     </slot>
     <slot name="content" />
     <slot name="submit">
-      <ui-button size="sm">
+      <ui-button size="md">
         Submit
       </ui-button>
     </slot>
