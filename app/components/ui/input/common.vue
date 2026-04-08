@@ -1,5 +1,5 @@
 <script setup lang="ts">
-export type CommonInputTypes = 'text' | 'email' | 'number' | 'url';
+export type CommonInputTypes = 'text' | 'email' | 'number' | 'url' | 'date';
 export interface IInputCommonProps {
   id: string
   type?: CommonInputTypes

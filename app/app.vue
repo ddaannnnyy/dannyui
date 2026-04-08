@@ -19,7 +19,7 @@ const testValue = ref('test value');
       </template>
     </ui-form>
     <p>{{ testValue }}</p> -->
-    <div class="min-w-md">
+    <div class="min-w-xs">
       <ui-input-address name="address" label="Address Label" />
     </div>
   </div>
