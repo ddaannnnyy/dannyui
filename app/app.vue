@@ -33,6 +33,7 @@ const testValue = ref('test value');
         />
       </template>
     </ui-form>
+    <ui-input-text-area id="text-area" name="Text Area" class="w-sm" rows="20" />
     <ui-input-dropdown
       id="dd"
       :items="[{ id: '1', label: 'One', emit: 'one' }, { id: '2', label: 'Two', emit: 'two' }]"
