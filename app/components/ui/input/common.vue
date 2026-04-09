@@ -5,15 +5,16 @@ export interface IInputCommonProps {
   type?: CommonInputTypes
   value?: string
 }
+export interface IInputCommonEmits {
+  'input:event': [value: Event]
+  'input:target': [value: HTMLInputElement]
+  'input:value': [value: string]
+}
 defineOptions({ inheritAttrs: false });
 
 const props = withDefaults(defineProps<IInputCommonProps>(), { type: 'text' });
 
-const emit = defineEmits<{
-  'input:event': [value: Event]
-  'input:target': [value: HTMLInputElement]
-  'input:value': [value: string]
-}>();
+const emit = defineEmits<IInputCommonEmits>();
 
 const barebones = useLayerOptions('barebones');
 
