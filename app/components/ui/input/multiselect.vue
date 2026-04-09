@@ -45,14 +45,7 @@ const remainingOptions = computed(() => {
 });
 
 onMounted(() => {
-  returnDevWarning(`
-        This selector has some weird validation rules.\r\n
-        Because the input clears when selecting a value it cannot pass required flags in forms.\r\n
-        I've added a hidden input that absorbs the required and fills. This allows the form to be haulted if empty, but pass when at least one item is selected.
-        \r\n\r\n
-        !BUT!
-        \r\n\r\n you do not get the in built validation warning, as the empty field is unfocusable. Just know that if you use this as a required field you will need to write a custom invalid message if the form tries to submit when no item is selected.
-    `, 'warn');
+  returnDevWarning(`This selector has some weird validation rules. \r\nBecause the input clears when selecting a value it cannot pass required flags in forms.\r\nI've added a hidden input that absorbs the required and fills. This allows the form to be haulted if empty, but pass when at least one item is selected.\r\n!BUT!\r\nyou do not get the in built validation warning, as the empty field is unfocusable. Just know that if you use this as a required field you will need to write a custom invalid message if the form tries to submit when no item is selected.`, 'warn');
 });
 
 // Hooking into the remainingOptions computed property makes the watch more reliable, I didn't want to duplicate the selected into a comp just for this.

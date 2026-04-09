@@ -27,6 +27,10 @@ const testValue = ref('test value');
         />
         <ui-input-otp id="otp" />
         <ui-input-phone id="phone" @input:value="console.log($event)" />
+        <ui-input-select
+          id="select" name="select"
+          :items="[{ id: '1', label: 'One', emit: 'one' }, { id: '2', label: 'Two', emit: 'two' }]"
+        />
       </template>
     </ui-form>
     <ui-input-dropdown
