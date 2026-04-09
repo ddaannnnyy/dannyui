@@ -15,6 +15,9 @@ export default defineNuxtConfig({
       },
     },
   },
+  extends: [
+    ['github:ddaannnnyy/utility-layer-nuxt4', { install: true }],
+  ],
   css: [
     resolve('app/assets/css/dannyui.css'),
     resolve('app/assets/css/tailwind.css')

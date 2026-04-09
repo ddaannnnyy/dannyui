@@ -3,8 +3,8 @@ const testValue = ref('test value');
 </script>
 
 <template>
-  <div class="flex flex-col gap-6 items-center justify-start h-screen w-screen bg-sky-900">
-    <ui-form @submit:fields="console.log($event)">
+  <div class="flex flex-col gap-6 items-center justify-center h-screen w-screen bg-sky-900">
+    <ui-form class="w-sm" @submit:fields="console.log($event)">
       <template #heading>
         Heading
       </template>
@@ -15,10 +15,23 @@ const testValue = ref('test value');
             @input:value="testValue = $event"
           />
         </ui-input-label>
-        <UiButtonDropdown size="xl" full-width :items="[{ id: '0', label: 'item', emit: 'emit' }]" label="Select" />
+        <ui-input-file-upload name="file" multiple>
+          <template #drop-zone>
+            <p>hello world</p>
+          </template>
+        </ui-input-file-upload>
+        <ui-input-multiselect
+          id="dd"
+          :items="[{ id: '1', label: 'One', emit: 'one' }, { id: '2', label: 'Two', emit: 'two' }]"
+          :selected-items="[{ id: '1', label: 'One', emit: 'one' }]"
+        />
+        <ui-input-otp id="otp" />
       </template>
     </ui-form>
-    <ui-input-dropdown id="dd" :items="[{ id: '1', label: 'One', emit: 'one' }, { id: '2', label: 'Two', emit: 'two' }]" />
+    <ui-input-dropdown
+      id="dd"
+      :items="[{ id: '1', label: 'One', emit: 'one' }, { id: '2', label: 'Two', emit: 'two' }]"
+    />
     <p>{{ testValue }}</p>
     <!-- <div class="min-w-xs">
       <ui-input-address name="address" label="Address Label" />

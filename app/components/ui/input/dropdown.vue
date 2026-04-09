@@ -39,6 +39,7 @@ const { items, clearOnSelected, showOptionsOnFocus } = toRefs(props);
 
 const input = ref<string>();
 const dropdown = ref<HTMLDivElement>();
+const dropdownList = ref<HTMLUListElement>();
 const dropdownPosition = ref<'above' | 'below'>('below');
 const showAllOptions = ref<boolean>(false);
 
@@ -57,6 +58,11 @@ const inputIsValidOption = computed(() => {
 const showDropdownOptions = computed(() => {
   const atLeastOneOption = itemFilter.value && itemFilter.value?.length > 0;
   return atLeastOneOption && !inputIsValidOption.value;
+});
+
+onClickOutside(dropdownList, (event) => {
+  emit('blur', event);
+  showAllOptions.value = false;
 });
 
 function calculateDropdownPosition() {
@@ -81,16 +87,17 @@ function calculateDropdownPosition() {
 }
 
 function handleSelect(choice: IDropDownOption) {
+  emit('input:value', choice.emit);
+  emit('selected:item', choice);
+  emit('selected:value', choice.emit);
+  emit('submit');
+  showAllOptions.value = false;
   if (clearOnSelected.value) {
     input.value = undefined;
   }
   else {
     input.value = choice.label;
   }
-  emit('input:value', choice.emit);
-  emit('selected:item', choice);
-  emit('selected:value', choice.emit);
-  emit('submit');
 }
 
 function handleEmit(event: Event) {
@@ -111,11 +118,6 @@ function handleFocus(event: FocusEvent) {
     showAllOptions.value = true;
   }
   emit('focus', event);
-}
-
-function handleBlur(event: FocusEvent) {
-  showAllOptions.value = false;
-  emit('blur', event);
 }
 
 // Recalculate position on window resize
@@ -146,19 +148,21 @@ watch(() => input.value, (newValue) => {
       <ui-input-label v-if="props.label" :name="id" :label="props.label" />
       <ui-input-common
         :id="props.id" :value="input" v-bind="$attrs" input="handleEmit" @keypress.prevent.enter="handleEnterPress"
-        @focus="handleFocus" @blur="handleBlur" @input:event="handleEmit"
+        @focus="handleFocus" @input:event="handleEmit"
       />
     </div>
     <transition>
       <ul
         v-if="showDropdownOptions"
+        ref="dropdownList"
         class="absolute p-3 z-50 left-0 w-full bg-white rounded-md text-xs select-none shadow-lg flex flex-col overflow-y-auto"
         :class="dropdownPosition === 'above' ? 'bottom-full' : 'top-full'"
         :style="`max-height:${props.dropdownMaxHeight ?? 200}px`"
       >
         <li v-for="item in itemFilter" :key="item.id">
           <button
-            class="w-full text-left p-2 rounded-sm transition-colors duration-150 hover:bg-background-tertiary"
+            type="button"
+            class="w-full text-left p-2 rounded-sm transition-colors duration-150"
             @click.prevent="() => handleSelect(item)"
           >
             {{ item.label }}

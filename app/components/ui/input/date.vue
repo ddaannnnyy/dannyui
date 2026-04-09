@@ -2,8 +2,8 @@
 export interface IInputDateProps {
   id: string
   value?: string
-  min: string
-  max: string
+  min?: string
+  max?: string
 }
 export interface IInputDateEmit {
   'input:event': [value: Event]
@@ -13,7 +13,10 @@ export interface IInputDateEmit {
   'input:date': [value: Date | null]
 }
 
-const props = withDefaults(defineProps<IInputDateProps>(), {});
+const props = withDefaults(defineProps<IInputDateProps>(), {
+  min: '1900-01-01',
+  max: '2900-12-31'
+});
 const emit = defineEmits<IInputDateEmit>();
 
 const inputValue = ref<string>();
@@ -30,7 +33,7 @@ function handleEmit(event: Event) {
 </script>
 
 <template>
-  <ui-input-common :id="props.id" :value="props.value" :min="props.min" :max="props.max" @input:event="handleEmit" />
+  <ui-input-common :id="props.id" type="date" :value="props.value" :min="props.min" :max="props.max" @input:event="handleEmit" />
 </template>
 
 <style scoped>
