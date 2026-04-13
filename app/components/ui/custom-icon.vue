@@ -10,7 +10,7 @@ const { icon, fontSize } = toRefs(props);
 </script>
 
 <template>
-  <div class="leading-none *:select-none!" v-html="customIcon(icon, fontSize)" />
+  <div class="leading-none *:select-none! flex items-center justify-center" v-html="customIcon(icon, fontSize)" />
 </template>
 
 <style scoped></style>

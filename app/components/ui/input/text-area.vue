@@ -2,8 +2,8 @@
 export interface IInputTextAreaProps {
   id: string
   name: string
-  resize?: 'none' | 'both' | 'horizontal' | 'vertical'
   value?: string
+  resize?: 'none' | 'both' | 'horizontal' | 'vertical'
 }
 export interface IInputTextAreaEmits {
   'input:value': [value: string | undefined]
@@ -42,18 +42,19 @@ const resizeClass = computed(() => {
   }
 });
 
-onMounted(() => {
-  if (props.value)
-    content.value = props.value;
-});
+watch(() => props.value, (newValue) => {
+  content.value = newValue;
+}, { immediate: true });
 
-watch(() => content.value, (newValue) => {
-  emit('input:value', newValue);
-});
+function handleInput(event: Event) {
+  const target = event.target as HTMLInputElement;
+  emit('input:event', event);
+  emit('input:value', target.value);
+}
 </script>
 
 <template>
-  <textarea :id="props.id" v-model="content" :name="props.name" v-bind="$attrs" :class="[resizeClass, classStyles]" @change="emit('input:event', $event)" />
+  <textarea :id="props.id" v-model="content" :name="props.name" v-bind="$attrs" :class="[resizeClass, classStyles]" @input="handleInput" />
 </template>
 
 <style scoped>

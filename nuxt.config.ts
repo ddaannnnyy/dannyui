@@ -1,6 +1,7 @@
-import { createResolver } from '@nuxt/kit';
-// Resolve will enable the tailwind files to work in parents.
-const { resolve } = createResolver(import.meta.url);
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const currentDirectory = dirname(fileURLToPath(import.meta.url));
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -19,12 +20,12 @@ export default defineNuxtConfig({
     ['github:ddaannnnyy/utility-layer-nuxt4', { install: true }],
   ],
   css: [
-    resolve('app/assets/css/dannyui.css'),
-    resolve('app/assets/css/tailwind.css')
+    join(currentDirectory, './app/assets/css/dannyui.css'),
+    join(currentDirectory, './app/assets/css/tailwind.css')
   ],
   devtools: { enabled: true },
   modules: [
-    resolve('modules/initial-setup.ts'),
+    join(currentDirectory, './modules/initial-setup.ts'),
     '@vueuse/nuxt',
     '@nuxt/eslint'
   ],
