@@ -19,6 +19,7 @@ export default defineNuxtConfig({
   extends: [
     ['github:ddaannnnyy/utility-layer-nuxt4', { install: true }],
   ],
+  testUtils: false, // disables test-utils from the utility layer
   css: [
     join(currentDirectory, './app/assets/css/dannyui.css'),
     join(currentDirectory, './app/assets/css/tailwind.css')
