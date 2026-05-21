@@ -2,14 +2,18 @@
 export interface IPopupTooltipProps {
   content?: string
   alwaysOpen?: boolean
+  caretColor?: HexColor
 }
 export interface IPopupTooltipEmits {
   visible: [value: boolean]
 }
 
-const props = defineProps<IPopupTooltipProps>();
+const props = withDefaults(defineProps<IPopupTooltipProps>(), {
+  caretColor: '#000000'
+});
 const emit = defineEmits<IPopupTooltipEmits>();
 
+const { caretColor } = toRefs(props);
 const tooltip = ref<HTMLDivElement | null>(null);
 const dropdownPosition = ref<'above' | 'below'>('above');
 const open = ref<boolean>(false);
@@ -50,12 +54,12 @@ function toggleDropdown() {
           <div
             v-if="dropdownPosition === 'above'"
             name="caret-up"
-            class="absolute top-full left-1/2 transform -translate-x-1/2 size-0 border-x-[6px] border-t-[6px] border-x-transparent border-t-slate-900"
+            class="caret absolute top-full left-1/2 transform -translate-x-1/2 size-0 border-x-[6px] border-t-[6px] border-x-transparent!"
           />
           <div
             v-if="dropdownPosition === 'below'"
             name="caret-down"
-            class="absolute top-full left-1/2 transform -translate-x-1/2 size-0 border-x-[6px] border-b-[6px] border-x-transparent border-b-slate-900"
+            class="caret absolute top-full left-1/2 transform -translate-x-1/2 size-0 border-x-[6px] border-b-[6px] border-x-transparent!"
           />
         </div>
       </div>
@@ -72,5 +76,9 @@ function toggleDropdown() {
 .tooltip-enter-from,
 .tooltip-leave-to {
     opacity: 0;
+}
+
+.caret {
+  border-color: v-bind(caretColor);
 }
 </style>

@@ -19,6 +19,7 @@ const emit = defineEmits<IInputOTPEmits>();
 
 const { value } = toRefs(props);
 const digits = ref<string[]>(['', '', '', '', '', '']);
+const hiddenOTPref = ref<(HTMLInputElement | null)>(null);
 const inputRefs = ref<(HTMLInputElement | null)[]>([]);
 const otpRegex = /^\d{6}$/;
 const numberRegex = /\D/g;
@@ -128,11 +129,50 @@ function handleKeyDown(event: KeyboardEvent, index: number) {
   }
 }
 
+function handleHiddenOTPInput(event: Event) {
+  const input = event.target as HTMLInputElement;
+  applyDigitsFromBuffer(input.value, 0, event);
+  nextTick(() => {
+    input.value = '';
+  });
+}
+
+function applyDigitsFromBuffer(raw: string, startIndex: number, event?: Event) {
+  const cleaned = raw.replace(numberRegex, '');
+  const maxTake = 6 - startIndex;
+  const chunk = cleaned.slice(0, maxTake);
+  if (chunk.length === 0)
+    return;
+
+  for (let index = 0; index < chunk.length; index++) {
+    digits.value[startIndex - 1] = chunk[index] ?? ';';
+  }
+
+  nextTick(() => {
+    const endIndex = Math.min(startIndex + chunk.length, 6);
+    for (let index = startIndex; index < endIndex; index++) {
+      const element = inputRefs.value[index];
+      if (element) {
+        element.value = digits.value[index] ?? '';
+      }
+    }
+    const focusIndex = Math.min(startIndex + chunk.length - 1, 5);
+    inputRefs.value[focusIndex]?.focus();
+  });
+
+  if (event) {
+    emit('input:event', event);
+  }
+}
+
 function handlePaste(event: ClipboardEvent) {
   event.preventDefault();
 
   const pastedData = event.clipboardData?.getData('text') || '';
   const cleanedData = returnRemoveSpecialCharacters(pastedData);
+
+  if (!cleanedData)
+    return;
 
   if (cleanedData.length !== 6 || !otpRegex.test(cleanedData)) {
     emit('invalid', event);
@@ -167,6 +207,21 @@ function handleBlur(event: FocusEvent) {
 <template>
   <ui-input-label :name="props.id" />
   <div :id="props.id" class="w-full flex flex-row items-center gap-2">
+    <input
+      :id="`${id}-otp-autofill`"
+      ref="hiddenOTPref"
+      type="text"
+      inputmode="numeric"
+      maxlength="6"
+      autocomplete="one-time-code"
+      autocorrect="off"
+      spellcheck="false"
+      tabindex="-1"
+      :name="`${props.id}-one-time-code`"
+      class="sr-only"
+      :required="required"
+      @input="handleHiddenOTPInput"
+    >
     <input
       v-for="(_, index) in digits" :id="index === 0 ? `${id}-otp-0` : `${id}-otp-${index}`"
       :key="index" :ref="(element) => { if (element) inputRefs[index] = element as HTMLInputElement }"

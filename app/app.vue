@@ -4,7 +4,7 @@ const showModal = ref(false);
 </script>
 
 <template>
-  <div class="relative flex flex-col gap-6 items-center justify-center h-screen w-screen bg-sky-900">
+  <div class="relative flex flex-col gap-6 items-center justify-center py-12 bg-sky-900 min-h-screen">
     <ui-form @submit:fields="console.log($event)">
       <template #heading>
         Heading
@@ -37,13 +37,14 @@ const showModal = ref(false);
         </ui-button>
       </template>
     </ui-form>
+    <ui-bread-crumbs :route="useRoute()" name-override="Override" />
     <ui-input-text-area id="text-area" name="Text Area" class="w-sm h-[100px]" rows="20" value="hello" @input:value="console.log($event)" />
-    <ui-popup-tooltip content="hello world">
+    <ui-popup-tooltip content="hello world" caret-color="#ffffff">
       <p>hover for tooltip</p>
       <template #content>
-        <div class="bg-slate-900 p-2 rounded">
+        <div class="bg-white shadow p-2 rounded">
           <img
-            class="size-32 rounded-sm"
+            class="rounded-sm object-fit"
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQs1OtM7dKWRBrkYKSSnldgGFOYJicEf-PpieXLBgTepd2TYEGWFViCaGKBv4Ei1BbvNiq7Fcr61tCbd26Exzgl0O0rsq2J6wE9KMSuNBU&s=10"
             alt=""
           >
@@ -54,7 +55,6 @@ const showModal = ref(false);
       id="dd"
       :items="[{ id: '1', label: 'One', emit: 'one' }, { id: '2', label: 'Two', emit: 'two' }]"
     />
-    <p>{{ testValue }}</p>
     <!-- <div class="min-w-xs">
       <ui-input-address name="address" label="Address Label" />
     </div> -->

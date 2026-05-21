@@ -10,6 +10,8 @@ declare global {
     emit: string
     highlighted?: boolean
   }
+
+  export type HexColor = `#${string}`;
 }
 
 export { };
